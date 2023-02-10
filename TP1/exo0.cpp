@@ -3,7 +3,7 @@
 #include <time.h>
 
 #define return_and_display(result) return _.store(result);
-//feur
+//feur societe
 
 int sum(int n)
 {
