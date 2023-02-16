@@ -3,8 +3,6 @@
 #include <time.h>
 
 #define return_and_display(result) return _.store(result);
-//feur societe
-
 int sum(int n)
 {
     Context _("sum", n); // do not care about this, it allow the display of call stack
