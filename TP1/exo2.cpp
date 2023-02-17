@@ -1,4 +1,4 @@
-#include "tp1.h"
+/*#include "tp1.h"
 #include <QApplication>
 #include <time.h>
 
@@ -21,4 +21,36 @@ int main(int argc, char *argv[])
     w->show(); // show exercice
 
     return a.exec(); // main loop while window is opened
+}
+*/
+
+#include <iostream>
+using namespace std;
+
+int fibonacci(int value)
+{
+    if (value == 0)
+    {
+        return 0;
+    }
+    else if (value == 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return fibonacci(value - 1) + fibonacci(value - 2);
+    }
+}
+
+
+int main()
+{
+    int value;
+    cout << "Enter value: ";
+    cin >> value;
+    cout << "Result: " << fibonacci(value) << endl;
+
+    
+    return 0;
 }

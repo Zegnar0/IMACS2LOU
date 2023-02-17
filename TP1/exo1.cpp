@@ -1,4 +1,4 @@
-#include "tp1.h"
+/*#include "tp1.h"
 #include <QApplication>
 #include <time.h>
 
@@ -22,3 +22,37 @@ int main(int argc, char *argv[])
 
     return a.exec(); // main loop while window is opened
 }
+*/
+
+#include <iostream>
+using namespace std;
+
+//power recursive function
+int power(int value, int n)
+{
+    if (n == 0)
+    {
+        return 1;
+    }
+    else
+    {
+        return value * power(value, n - 1);
+    }
+}
+
+int main()
+{
+    int value, n;
+    cout << "Enter value: ";
+    cin >> value;
+    cout << "Enter n: ";
+    cin >> n;
+    cout << "Result: " << power(value, n) << endl;
+
+    
+    
+    
+    return 0;
+}
+
+
