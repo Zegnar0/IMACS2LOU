@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::initialize()
 {
-    qsrand((uint)time(nullptr));
+   // qsrand((uint) time(nullptr);
 
     setBackground(nullptr);
 
@@ -358,11 +358,11 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
 	{
 		QWheelEvent* wheel_event = static_cast<QWheelEvent*>(event);
 		if (QApplication::keyboardModifiers() == Qt::KeyboardModifier::ControlModifier) {
-			float wheelDelta = wheel_event->delta();
+            float wheelDelta = wheel_event->angleDelta().y();
 			scale += std::pow(1.01f, std::abs(wheelDelta) / 24.f) * (std::signbit(wheelDelta) ? -1 : 1) / 5.f;
 			scale = qMin<float>(2.5f, qMax<float>(0.25f, scale));
 			zoom = true;
-			targetPos = wheel_event->pos();
+            targetPos = wheel_event->position();
 			return true;
 		}
 	}

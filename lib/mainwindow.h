@@ -13,7 +13,6 @@
 #include <QGraphicsView>
 #include <QPushButton>
 #include <QFormLayout>
-#include <QLinkedList>
 #include <QStack>
 #include <QVector2D>
 #include <QTimer>
@@ -156,7 +155,7 @@ private:
 	QGraphicsPixmapItem* background;
 
     QStack<QString> functionCalls;
-    QLinkedList<QGraphicsTextItem *> functionCallItems;
+    QVector<QGraphicsTextItem *> functionCallItems;
 
 	bool zoom;
 	float scale;

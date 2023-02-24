@@ -26,7 +26,9 @@
 #include <iostream>
 using namespace std;
 
-int Mandelbrot()
+int Mandelbrot(vec2 z, vec2 point, int n){
+
+}
 
 
 int main()
