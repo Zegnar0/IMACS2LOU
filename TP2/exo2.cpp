@@ -8,15 +8,15 @@ MainWindow* w=nullptr;
 void insertionSort(Array& toSort){
 	Array& sorted=w->newArray(toSort.size());
 	
-	for (int i=0; i<toSort.size(); i++){
-		int j=i;
-		while (j>0 && sorted[j-1]>toSort[i]){
-			sorted[j]=sorted[j-1];
-			j--;
+	for(int i=0; i<toSort.size(); i++){
+		int val = toSort[i];
+		int j = i-1;
+		while( j>=0 && sorted[j]> val){
+			sorted[j+1] = sorted[j];
+			j = j-1;
 		}
-		sorted[j]=toSort[i];
+		sorted [j+1] = val;
 	}
-
 	// insertion sort from toSort to sorted
 	
 	toSort=sorted; // update the original array
