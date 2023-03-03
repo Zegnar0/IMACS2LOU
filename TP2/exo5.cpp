@@ -13,10 +13,21 @@ void splitAndMerge(Array& origin)
 	// initialisation
 	Array& first = w->newArray(origin.size()/2);
 	Array& second = w->newArray(origin.size()-first.size());
+
+	//split an array in two in the middle
+	for (int i = 0; i < first.size(); ++i)
+	{
+		first[i] = origin[i];
+	}
+	for (int i = 0; i < second.size(); ++i)
+	{
+		second[i] = origin[i+first.size()];
+	}
 	
-	// split
 
 	// recursiv splitAndMerge of lowerArray and greaterArray
+
+
 
 	// merge
 }

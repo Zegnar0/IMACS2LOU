@@ -8,6 +8,15 @@ MainWindow* w=nullptr;
 
 void bubbleSort(Array& toSort){
 	// bubbleSort
+	for(int i=0; i<toSort.size(); i++){
+		for(int j=0; j<toSort.size()-i-1; j++){
+			if(toSort[j]>toSort[j+1]){
+				int temp = toSort[j];
+				toSort[j] = toSort[j+1];
+				toSort[j+1] = temp;
+			}
+		}
+	}
 }
 
 
