@@ -18,6 +18,7 @@
 #include <QTimer>
 
 #include "thread.h"
+#include "utils.h"
 
 class AbstractArray;
 class Array;
