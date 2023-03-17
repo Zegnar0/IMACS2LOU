@@ -1,6 +1,5 @@
 #include "array.h"
 #include "mainwindow.h"
-#include <qrandom.h>
 
 
 bool AbstractArray::wait_for_operations = true;
@@ -78,17 +77,17 @@ void Array::fillRandom(const int min, const int max)
 {
     const int _max = max - min;
     for (size_t i=0; i<size(); ++i)
-        _data[i] = QRandomGenerator::global()->generate() % _max + min;
+        _data[i] = rand() % _max + min;
 }
 
 void Array::fillSortedRandom(const int min, const int max)
 {
     int _max = (max - min) / 2;
-    _data[0] = QRandomGenerator::global()->generate() % _max + min;
+    _data[0] = rand() % _max + min;
     for (size_t i=1; i<size(); ++i)
     {
         _max = ((max - _data[i-1]) - min) / 2;
-        _data[i] = _data[i-1] + QRandomGenerator::global()->generate() % _max + min;
+        _data[i] = _data[i-1] + rand() % _max + min;
     }
 }
 

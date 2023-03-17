@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::initialize()
 {
-   // qsrand((uint) time(nullptr);
+    qsrand((uint)time(nullptr));
 
     setBackground(nullptr);
 
@@ -208,7 +208,8 @@ void MainWindow::popFunctionCall(QVariant result)
     {
         if (!functionCallItems.isEmpty())
         {
-            QGraphicsTextItem* item = functionCallItems.takeLast();
+            QGraphicsTextItem* item = functionCallItems.last();
+            functionCallItems.pop_back();
             while (toAdd.contains(item))
                 custom_msleep(20);
             toUpdate.push_back(QPair<QGraphicsTextItem*, QString>(item, item->toPlainText() +
@@ -224,7 +225,8 @@ void MainWindow::clearFunctionsCall()
 {
     while (!functionCallItems.isEmpty())
     {
-        QGraphicsTextItem* item = functionCallItems.takeLast();
+        QGraphicsTextItem* item = functionCallItems.last();
+        functionCallItems.pop_back();
         toRemove.push_back(item);
     }
     functionCalls.clear();
@@ -361,11 +363,11 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
 	{
 		QWheelEvent* wheel_event = static_cast<QWheelEvent*>(event);
 		if (QApplication::keyboardModifiers() == Qt::KeyboardModifier::ControlModifier) {
-            float wheelDelta = wheel_event->angleDelta().y();
+			float wheelDelta = wheel_event->delta();
 			scale += std::pow(1.01f, std::abs(wheelDelta) / 24.f) * (std::signbit(wheelDelta) ? -1 : 1) / 5.f;
 			scale = qMin<float>(2.5f, qMax<float>(0.25f, scale));
 			zoom = true;
-            targetPos = wheel_event->position();
+			targetPos = wheel_event->pos();
 			return true;
 		}
 	}

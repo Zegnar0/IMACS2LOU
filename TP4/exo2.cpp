@@ -1,6 +1,5 @@
 #include <time.h>
 #include <stdio.h>
-
 #include <QApplication>
 #include <QDebug>
 

@@ -5,6 +5,7 @@
 #include "array.h"
 #include "binarytree.h"
 #include "thread.h"
+#include<QLinkedList>
 
 class TreeNumberGraphicsItem;
 
