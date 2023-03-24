@@ -109,6 +109,7 @@ HuffmanNode* HuffmanHeap::extractMinNode(int heapSize)
       * heapify the heap to get a new well-formed heap without the returned cell
       * you can use `this->swap`
      **/
+    // TEST
 
     // Your code
 }
