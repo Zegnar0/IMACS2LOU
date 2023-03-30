@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 using namespace std;
 
 //power recursive function
-int power(int value, int n)
+int Pow(int value, int n)
 {
     if (n == 0)
     {
@@ -36,7 +36,7 @@ int power(int value, int n)
     }
     else
     {
-        return value * power(value, n - 1);
+        return value * Pow(value, n - 1);
     }
 }
 
@@ -47,7 +47,7 @@ int main()
     cin >> value;
     cout << "Enter n: ";
     cin >> n;
-    cout << "Result: " << power(value, n) << endl;
+    cout << "Result: " << Pow(value, n) << endl;
 
     
     

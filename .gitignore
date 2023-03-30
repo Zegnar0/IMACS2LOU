@@ -8,3 +8,4 @@ Debug
 *.synctex.gz
 .idea
 *.pro.user*
+**/*.exe

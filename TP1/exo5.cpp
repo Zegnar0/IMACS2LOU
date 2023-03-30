@@ -4,6 +4,7 @@
 
 int isMandelbrot(Point z, int n, Point point)
 {
+    //ahhhh les maths
     if (n > 0){
         int mod = sqrt(z.x * z.x + z.y * z.y);
         if (mod > 2){
@@ -19,7 +20,7 @@ int isMandelbrot(Point z, int n, Point point)
 
     return 0;
 }
-
+//Qt qui arrive enfin a compiler (avec le nouveau pc pas mort)
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

@@ -70,9 +70,6 @@ void binarySearchAll(Array& array, int toSearch, int& indexMin, int& indexMax)
 {
 
 	indexMin = binarySearch(array, toSearch,0);
-	//indexMax = binarySearch(array, toSearch,1);
-	// do not use increments, use two different binary search loop
-    //indexMin = indexMax = -1;
 }
 
 int main(int argc, char *argv[])

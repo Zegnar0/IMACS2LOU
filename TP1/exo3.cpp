@@ -31,7 +31,7 @@ int search(int value, int Array[], int size)
 {
     if (size == 0)
     {
-        return -1;
+        return -1 ;
     }
     else if (Array[size - 1] == value)
     {
@@ -43,6 +43,7 @@ int search(int value, int Array[], int size)
     }
 }
 
+// il y avait un bug nul avec la taille de mon array mais c'est fix
 int main()
 {
 
@@ -50,7 +51,7 @@ int main()
     int value;
     cout << "Enter value: ";
     cin >> value;
-    cout << "Result: " << search(value, Array, 5) << endl;
+    cout << "Result: " << search(value, Array, 13) << endl;
     
     
     return 0;

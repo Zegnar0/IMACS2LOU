@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
 #include <iostream>
 using namespace std;
 
+//el classico de la función
 int fibonacci(int value)
 {
     if (value == 0)
@@ -43,7 +44,7 @@ int fibonacci(int value)
     }
 }
 
-
+//Toujours Sans QT mais ca arrive bientot mais c'est le début
 int main()
 {
     int value;

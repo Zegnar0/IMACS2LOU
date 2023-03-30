@@ -16,6 +16,15 @@
         "chrono": "cpp",
         "limits": "cpp",
         "tuple": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "array": "cpp",
+        "string": "cpp",
+        "*.tcc": "cpp",
+        "ratio": "cpp",
+        "system_error": "cpp",
+        "functional": "cpp",
+        "regex": "cpp",
+        "new": "cpp",
+        "bitset": "cpp"
     }
 }

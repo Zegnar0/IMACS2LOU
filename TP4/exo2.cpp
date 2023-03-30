@@ -58,6 +58,13 @@ void processCharFrequences(string data, Array& frequences)
 
     // Your code
     frequences.fill(0);
+    for (size_t i = 0; i < data.size(); i++) {
+        int Lettre = (int) data[i];
+        frequences[Lettre] += 1;
+    }
+
+
+
 }
 
 void HuffmanHeap::insertHeapNode(int heapSize, HuffmanNode* newNode)
