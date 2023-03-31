@@ -22,8 +22,15 @@ std::vector<string> TP5::names(
 
 unsigned long int hash(string key)
 {
-    // return an unique hash id from key
-    return 0;
+    int i = 0;
+	int hash_value = 0;
+	while(key[i] != '\0')
+	{
+		hash_value += (int)key[i]*128*i;
+		i++;
+	}
+    
+	return hash_value;
 }
 
 struct MapNode : public BinaryTree

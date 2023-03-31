@@ -25,6 +25,8 @@
         "functional": "cpp",
         "regex": "cpp",
         "new": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp"
     }
 }
