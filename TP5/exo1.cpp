@@ -50,7 +50,7 @@ bool HashTable::contains(std::string element)
     return (this->get(hash(i)) == element);
 
 }
-//Je ne sais pas comment je passe autant de temps sur aussi peu de ligne haha
+//Je ne sais pas comment je passe autant de temps sur aussi peu de ligne ALED
 
 int main(int argc, char *argv[])
 {

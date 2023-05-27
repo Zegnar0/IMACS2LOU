@@ -23,15 +23,14 @@ std::vector<string> TP5::names(
 
 unsigned long int hash(string key)
 {
-    int i = 0;
-	int hash_value = 0;
-	while(key[i] != '\0')
-	{
-		hash_value += (int)key[i]*128*i;
-		i++;
-	}
-    
-	return hash_value;
+   
+    unsigned long int value = 0;
+    for (int i = 1; i < key.size(); i++) {
+        value += static_cast<unsigned long int>(key[i]) * std::pow(128, key.size() - 1 - i);
+    }
+
+    return value;
+
 }
 
 struct MapNode : public BinaryTree
@@ -60,7 +59,19 @@ struct MapNode : public BinaryTree
      */
     void insertNode(MapNode* node)
     {
-
+        if(node->key_hash < this->key_hash) {
+            if(this->left) {
+                this->left->insertNode(node);
+            } else {
+                this->left = node;
+            }
+        } else if(node->key_hash >= this->key_hash) {
+            if(this->right) {
+                this->right->insertNode(node);
+            } else {
+                this->right = node;
+            }           
+        }  
     }
 
     void insertNode(string key, int value)
@@ -87,7 +98,12 @@ struct Map
      */
     void insert(string key, int value)
     {
-
+        MapNode* newNode = new MapNode(key, value);
+        if (root == nullptr) {
+            root = newNode;
+        } else {
+            root->insertNode(newNode);
+        }
     }
 
     /**
@@ -97,7 +113,19 @@ struct Map
      */
     int get(string key)
     {
-        return -1;
+        MapNode* Current = root;
+
+        while (Current && Current->key != key) {
+            if (hash(key) <= Current->key_hash) {
+
+                Current = Current->left;
+            } else {
+                
+                Current = Current->right;
+            }
+        }
+
+        return (Current && Current->value) ? Current->value : -1;
     }
 
     MapNode* root;

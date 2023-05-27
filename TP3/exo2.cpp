@@ -16,60 +16,60 @@ using std::size_t;
 
 int binarySearch(Array &array, int toSearch,bool cas)
 {
-	int minus = 0;
-	int maxus = 0;
 	int min = 0;
-	int max = array.size() - 1;
+	int max = array.size();
 	int mid = (min + max) / 2;
-	while (min <= max)
+	while (min < max)
 	{
-		if (array[mid] < toSearch)
-		{
-			min = mid + 1;
-		}
-		else if (array[mid] == toSearch)
-		{
-			if (cas == 0){
-				minus=mid;
-				if (array[mid]-1 == array[mid])
-				{
-					while (array[mid] >= toSearch)
-					{
-						mid--;
-						minus = mid;
-					}
-				}
-				return minus;
-			}
-
-			if (cas == 1)
-			{
-				maxus = mid;
-				if (array[mid]+1 == array[mid])
-				{
-				while (array[mid] <= toSearch)
-				{
-					mid++;
-					maxus = mid;
-				}
-				}
-				return maxus;
-			}
-			
-		}
+		mid = (min + max) / 2;
+		if(toSearch < array[mid]){
+            max = mid;
+        }
+		else if(toSearch > array[mid]){
+            min = mid + 1;
+        }
 		else
 		{
-			max = mid - 1;
+			int ind = mid;
+            return ind;
 		}
-		mid = (min + max) / 2;
 	}
 	return -1;
 }
 
 void binarySearchAll(Array& array, int toSearch, int& indexMin, int& indexMax)
 {
+	indexMin = indexMax = -1;
+    int min = 0;
+    int max = array.size();
+    while(min <= max) {
+        int mid = (min+max)/2;
+        int midValue = array[mid];
+        if(midValue<toSearch) {
+            min = mid + 1;
+        } else if (midValue>toSearch) {
+            max = mid - 1;
+        } else {
+            indexMin = mid;
+            max = mid - 1;
+        }
+    }
 
-	indexMin = binarySearch(array, toSearch,0);
+    min = 0;
+    max = array.size()-1;
+    while(min <= max) {
+        int mid = (min+max)/2;
+        int midValue = array[mid];
+        if (midValue < toSearch) {
+            min = mid + 1;
+        } else if (midValue > toSearch) {
+            max = mid - 1;
+        } else {
+            indexMax = mid;
+            min = mid + 1;
+        }
+    }
+
 }
 
 int main(int argc, char *argv[])

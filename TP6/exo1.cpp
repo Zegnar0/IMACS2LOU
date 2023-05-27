@@ -39,7 +39,9 @@ void Graph::deepTravel(GraphNode *first, GraphNode *nodes[], int &nodesSize, boo
 	  * Fill nodes array by travelling graph starting from first and using recursivity
 	  */
 	 visited[first->value] = true;
-	 nodes[nodesSize++] = first;
+	 nodes[nodesSize] = first;
+
+	 nodesSize++;
 	 
 	 for(Edge* e= first->edges; e != NULL; e = e->next)
 	 {
@@ -85,7 +87,19 @@ bool Graph::detectCycle(GraphNode *first, bool visited[])
 	  Detect if there is cycle when starting from first
 	  (the first may not be in the cycle)
 	  Think about what's happen when you get an already visited node
+	  
 	**/
+
+ Edge* currentEdge = first->edges;
+    visited[first->value]=true;
+
+    while(currentEdge != nullptr) {
+        if(!visited[currentEdge->destination->value]){
+            if(detectCycle(currentEdge->destination, visited))
+                return true;
+        }else return true;
+        currentEdge = currentEdge->next;
+    }
     return false;
 }
 
