@@ -59,19 +59,19 @@ struct MapNode : public BinaryTree
      */
     void insertNode(MapNode* node)
     {
-        if(node->key_hash < this->key_hash) {
-            if(this->left) {
-                this->left->insertNode(node);
-            } else {
-                this->left = node;
-            }
-        } else if(node->key_hash >= this->key_hash) {
-            if(this->right) {
-                this->right->insertNode(node);
-            } else {
-                this->right = node;
-            }           
-        }  
+        if (node->key_hash < this->key_hash) {
+    if (this->left) {
+        this->left->insertNode(node);
+    } else {
+        this->left = node;
+    }
+        } else {
+    if (this->right) {
+        this->right->insertNode(node);
+    } else {
+        this->right = node;
+    }
+}
     }
 
     void insertNode(string key, int value)
