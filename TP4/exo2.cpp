@@ -101,7 +101,7 @@ void HuffmanHeap::heapify(int heapSize, int nodeIndex)
     }
 
     if(min != nodeIndex){
-        swap(nodeIndex, min);
+        swap(nodeIndex, min);   
         heapify(heapSize, min);
     }
 
@@ -111,9 +111,9 @@ void HuffmanHeap::heapify(int heapSize, int nodeIndex)
 HuffmanNode* HuffmanHeap::extractMinNode(int heapSize)
 {
     
-     HuffmanNode* firstNode = this->get(0);
-    this->swap(0, heapSize-1);
-    this->heapify(heapSize-1, 0);
+    HuffmanNode* firstNode = this->get(0);
+    this->swap(0, heapSize - 1);
+    heapify(heapSize - 1, 0);
     return firstNode;
 }
 
@@ -121,47 +121,43 @@ HuffmanNode* makeHuffmanSubTree(HuffmanNode* rightNode, HuffmanNode* leftNode)
 {
     
    HuffmanNode* subTree = new HuffmanNode('\0');
-    subTree->right = rightNode;
-    subTree->left = leftNode;
-    subTree->frequences = rightNode->frequences + leftNode->frequences;
+        subTree->right = rightNode;
+        subTree->left = leftNode;
+        subTree->frequences = rightNode->frequences + leftNode->frequences;
     return subTree;
 }
 
 HuffmanNode* buildHuffmanTree(HuffmanHeap& priorityMinHeap, int heapSize)
 {
     
-    HuffmanNode* huffmanTree = new HuffmanNode('?');
+    HuffmanNode* huffmanTree = nullptr;
     HuffmanNode* leftChild;
     HuffmanNode* rightChild;
 
-    while(heapSize > 1) {
-        leftChild = priorityMinHeap.extractMinNode(heapSize);
-        heapSize--;
-        rightChild = priorityMinHeap.extractMinNode(heapSize);
-        heapSize--;
-        HuffmanNode* subTree = makeHuffmanSubTree(leftChild, rightChild);
-        priorityMinHeap.insertHeapNode(heapSize++, subTree);
+    while (heapSize > 1) {
+        leftChild = priorityMinHeap.extractMinNode(heapSize--);
+        rightChild = priorityMinHeap.extractMinNode(heapSize--);
+        huffmanTree = makeHuffmanSubTree(leftChild, rightChild);
+        priorityMinHeap.insertHeapNode(heapSize++, huffmanTree);
     }
 
-    return priorityMinHeap.extractMinNode(heapSize);
+    return huffmanTree;
 }
 
 void HuffmanNode::processCodes(const std::string& baseCode)
 {
     
     if (this->left == nullptr && this->right == nullptr) {
-        this->code = baseCode;
-        return;
+    this->code = baseCode;
+    return;
     }
-    
+
     if (this->left != nullptr) {
-        std::string leftCode = baseCode + "0";
-        this->left->processCodes(leftCode);
+        this->left->processCodes(baseCode + "0");
     }
-    
+
     if (this->right != nullptr) {
-        std::string rightCode = baseCode + "1";
-        this->right->processCodes(rightCode);
+        this->right->processCodes(baseCode + "1");
     }
 
 }
@@ -183,11 +179,12 @@ void HuffmanNode::fillCharactersArray(std::string charactersCodes[])
 string huffmanEncode(const string& toEncode, HuffmanNode* huffmanTree)
 {
     
-    std::string charactersCodes[256]; 
+    std::string charactersCodes[256];
     huffmanTree->fillCharactersArray(charactersCodes);
-    string encoded = "";
-    for(uint i=0; i<toEncode.length(); i++) {
-        encoded += charactersCodes[toEncode[i]];
+    std::string encoded;
+
+    for (char c : toEncode) {
+        encoded.append(charactersCodes[(c)]);
     }
 
     return encoded;
@@ -198,21 +195,14 @@ string huffmanDecode(const string& toDecode, const HuffmanNode& huffmanTreeRoot)
 {
    
     string decoded = "";
+    const HuffmanNode* currentNode = &huffmanTreeRoot;
 
-    const HuffmanNode * ici = nullptr;
+    for (char c : toDecode) {
+        currentNode = (c == '0') ? currentNode->left : currentNode->right;
 
-    ici = &huffmanTreeRoot;
-
-    for(uint i=0; i<toDecode.length(); i++) {
-        if(toDecode[i] == '0') {
-            ici = ici->left;
-        } else if(toDecode[i] == '1') {
-            ici = ici->right;
-        }
-
-        if(ici->isLeaf()) {
-            decoded += ici->character;
-            ici = &huffmanTreeRoot;
+        if (currentNode->isLeaf()) {
+            decoded += currentNode->character;
+            currentNode = &huffmanTreeRoot;
         }
     }
 
